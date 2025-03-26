@@ -1,0 +1,39 @@
+import { configureStore } from '@reduxjs/toolkit'
+import authSlice from '../features/auth/authSlice.js'
+import cartSlice from '../features/cart/cartSlice.js';
+import orderSlice from '../features/order/orderSlice.js';
+import  productSlice  from '../features/product/productSlice.js';
+
+//로컬 스토리지에 저장된 리덕스 상태값 읽어보기
+const loadState = () => {
+    try {
+        const serializedState = localStorage.getItem("reduxState");
+        return serializedState ? JSON.parse(serializedState) : undefined;
+    } catch (error) {
+        console.error("Redux 상태 로드 실패:", error);
+        return undefined;
+    }
+};
+
+export const store = configureStore({
+    reducer: {
+        login: authSlice,
+        cart: cartSlice,
+        order: orderSlice,
+        product: productSlice,
+    },
+    preloadedState: loadState(),
+})
+
+//로컬 스토리지에 리덕스 상태값 저장하기
+store.subscribe(() => {
+    try {
+        const serializedState = JSON.stringify(store.getState());
+        localStorage.setItem("reduxState", serializedState);
+    } catch (error) {
+        console.error("Redux 상태 저장 실패:", error);
+    }
+});
+
+// 이 코드는 Redux 상태를 로컬 스토리지(localStorage)에 저장하고, 애플리케이션을 새로고침해도 Redux 상태를 유지하기 위한 용도로 사용됩니다.
+
