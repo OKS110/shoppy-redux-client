@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import DaumPostcode from "react-daum-postcode";
-import { useOrder } from '../hooks/useOrder.js';
 import {getOrderList, paymentKakaoPay} from '../services/orderApi.js';
-import axios from "axios";
 import {useSelector, useDispatch} from 'react-redux';
 import "../styles/cart.css";
 import "../styles/checkoutinfo.css";
@@ -16,7 +14,6 @@ export default function CheckoutInfo() {
     
     const [zipcode, setZipcode] = useState("");
     const [address, setAddress] = useState("");
-    const [ qrUrl, setQrUrl] = useState('');
     const   zipcodeRef = useRef(null), 
             addressRef = useRef(null), 
             detailAddressRef = useRef(null),

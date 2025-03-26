@@ -26,7 +26,7 @@ export const validateLogin = ({idRef, pwdRef}, {msgRef}) => {
 /**
  * title : 회원가입 폼 체크
  */
-export const validateSignup = (refs, msgRefs, formData) => { 
+export const validateSignup = (refs, msgRefs) => { 
     const refEntries = Object.entries(refs.current); 
     const msgRefEntries = Object.entries(msgRefs.current);
     

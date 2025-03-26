@@ -1,14 +1,12 @@
 import React, {useState, useRef} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import ImageUpload from '../components/ImageUpload.jsx';
 import ImageUploadMultiple from '../components/ImageUploadMultiple.jsx';
 
 export default function NewProduct() {
     const navigate = useNavigate();
     const productNameRef = useRef(null);
     const [fname, setFnames] = useState({});  
-    const [preview, setPreview] = useState('');
     let [formData, setFormData] = useState({});
     const [previewList, setPreviewList] = useState([]);
 
